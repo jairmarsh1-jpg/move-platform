@@ -1,0 +1,176 @@
+{
+  "id": "10201995384f34d7128b82857f349808b9a",
+  "version": "10201995384f34d7075a8ddce3bd8f57ece",
+  "schema": {
+    "name": "customer",
+    "description": "Stores information about customers using the platform to find moving services.",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the customer.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer's unique identifier."
+        }
+      },
+      {
+        "name": "first_name",
+        "description": "Customer's first name.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Personally Identifiable Information (PII)."
+        }
+      },
+      {
+        "name": "last_name",
+        "description": "Customer's last name.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Personally Identifiable Information (PII)."
+        }
+      },
+      {
+        "name": "email",
+        "description": "Customer's primary email address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Personally Identifiable Information (PII)."
+        },
+        "format": "email"
+      },
+      {
+        "name": "phone_number",
+        "description": "Customer's primary phone number.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Personally Identifiable Information (PII)."
+        }
+      },
+      {
+        "name": "address",
+        "description": "Customer's primary residence address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Personally Identifiable Information (PII)."
+        },
+        "nullable": true
+      },
+      {
+        "name": "preferences",
+        "description": "JSON string containing customer-specific preferences.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer preference data."
+        },
+        "nullable": true
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "email"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "phone_number"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "68c99a0006732509e6307fbb",
+    "root": "68c99a0006732509e6307fbb",
+    "project": "68c99a0006732509e6307fba",
+    "user": "18c193b0-4091-70b8-b12b-9baaa4e88988"
+  },
+  "authorizations": [
+    {
+      "permission": 1,
+      "role": 3,
+      "name": "18c193b0-4091-70b8-b12b-9baaa4e88988"
+    }
+  ],
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true,
+    "authorizations": [
+      {
+        "permission": 1,
+        "role": 3,
+        "name": "115609683759212236196"
+      }
+    ]
+  }
+}

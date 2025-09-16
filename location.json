@@ -1,0 +1,243 @@
+{
+  "id": "1020199538585127e4da7db1e9d677ac821",
+  "version": "10201995384f34d7075a8ddce3bd8f57ece",
+  "schema": {
+    "name": "location",
+    "description": "Stores location data, including addresses and GPS coordinates, for tracking jobs.",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the location entry.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal record ID."
+        }
+      },
+      {
+        "name": "job_id",
+        "description": "Identifier of the job this location is associated with.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Links location to a job."
+        }
+      },
+      {
+        "name": "address_line_1",
+        "description": "The primary street address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer address information (PII)."
+        }
+      },
+      {
+        "name": "address_line_2",
+        "description": "Secondary address details (e.g., apartment number).",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer address information (PII)."
+        },
+        "nullable": true
+      },
+      {
+        "name": "city",
+        "description": "The city of the address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer address information (PII)."
+        }
+      },
+      {
+        "name": "state",
+        "description": "The state or province of the address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer address information (PII)."
+        }
+      },
+      {
+        "name": "zip_code",
+        "description": "The postal or zip code of the address.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Customer address information (PII)."
+        }
+      },
+      {
+        "name": "latitude",
+        "description": "The latitude coordinate of the location.",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Precise location data."
+        },
+        "numeric": "float"
+      },
+      {
+        "name": "longitude",
+        "description": "The longitude coordinate of the location.",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Precise location data."
+        },
+        "numeric": "float"
+      },
+      {
+        "name": "location_type",
+        "description": "The type of location (e.g., pickup, drop-off, or tracking point).",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Categorizes the location within the job context."
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Origin"
+          },
+          {
+            "number": 2,
+            "value": "Destination"
+          },
+          {
+            "number": 3,
+            "value": "Waypoint"
+          }
+        ]
+      },
+      {
+        "name": "timestamp",
+        "description": "Timestamp for real-time tracking points.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Time associated with tracking data."
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit trail."
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "job_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "job_id",
+          "timestamp"
+        ],
+        "order": true
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "job_id"
+        ],
+        "referenced_entity": {
+          "name": "job"
+        },
+        "referenced_fields": [
+          "id"
+        ],
+        "cascade": true
+      }
+    ]
+  },
+  "task": {
+    "id": "68c99a0006732509e6307fbb",
+    "root": "68c99a0006732509e6307fbb",
+    "project": "68c99a0006732509e6307fba",
+    "user": "18c193b0-4091-70b8-b12b-9baaa4e88988"
+  },
+  "authorizations": [
+    {
+      "permission": 1,
+      "role": 3,
+      "name": "18c193b0-4091-70b8-b12b-9baaa4e88988"
+    }
+  ],
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true,
+    "authorizations": [
+      {
+        "permission": 1,
+        "role": 3,
+        "name": "115609683759212236196"
+      }
+    ]
+  }
+}
